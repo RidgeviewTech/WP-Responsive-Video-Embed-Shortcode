@@ -18,11 +18,8 @@
  */
 
 
-/* SHORTCODES FOR VIDEO EMBED */
-
-// Add Shortcode
-function video_embed_shortcode( $atts ) {
-
+/* SHORTCODE FOR VIMEO VIDEO EMBEDS */
+function vimeo_embed_shortcode( $atts ) {
   // Attributes
   $atts = shortcode_atts(
     array(
@@ -38,9 +35,35 @@ function video_embed_shortcode( $atts ) {
     'video_embed'
   );
 
-  // Return custom embed code
   return '<div class="video-wrapper" style="width:' . $atts['max-width'] .'px; float:' . $atts['float'] .'; margin-top:' . $atts['top'] .'px; margin-right:' . $atts['right'] .'px; margin-bottom:' . $atts['bottom'] .'px; margin-left:' . $atts['left'] .'px;">
-          <div class="first-ascent-video">
+          <div class="video-embed-code">
+          <iframe src="https://player.vimeo.com/video/' . $atts['src'] . '" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0" class="video">
+           </iframe></div></div>';
+
+}
+add_shortcode( 'vimeo_embed', 'vimeo_embed_shortcode' );
+//<iframe src="https://player.vimeo.com/video/217155740" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+// YOUTUBE
+function youtube_embed_shortcode( $atts ) {
+  // Attributes
+  $atts = shortcode_atts(
+    array(
+      'src' => '',
+      'max-width' => '',
+      'float' => '',
+      'left' => '',
+      'right' => '',
+      'bottom' => '',
+      'top' => '',
+    ),
+    $atts,
+    'video_embed'
+  );
+
+  return '<div class="video-wrapper" style="width:' . $atts['max-width'] .'px; float:' . $atts['float'] .'; margin-top:' . $atts['top'] .'px; margin-right:' . $atts['right'] .'px; margin-bottom:' . $atts['bottom'] .'px; margin-left:' . $atts['left'] .'px;">
+          <div class="video-embed-code">
           <iframe src="https://www.youtube.com/embed/' . $atts['src'] . '?rel=0"
            allowfullscreen
            frameborder="0"
@@ -48,4 +71,4 @@ function video_embed_shortcode( $atts ) {
            </iframe></div></div>';
 
 }
-add_shortcode( 'video_embed', 'video_embed_shortcode' );
+add_shortcode( 'youtube_embed', 'youtube_embed_shortcode' );
