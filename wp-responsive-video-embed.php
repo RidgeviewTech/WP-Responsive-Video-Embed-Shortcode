@@ -17,6 +17,16 @@
  * GNU General Public License for more details.
  */
 
+/**
+ * Register with hook 'wp_enqueue_scripts', which can be used for front end CSS and JavaScript
+ */
+add_action( 'wp_enqueue_scripts', 'ridgeview_add_plugin_stylesheet' );
+
+function ridgeview_add_plugin_stylesheet() {
+    // Respects SSL, Style.css is relative to the current file
+    wp_register_style( 'ridgeview-style', plugins_url('styles.css', __FILE__) );
+    wp_enqueue_style( 'ridgeview-style' );
+}
 
 /* SHORTCODE FOR VIMEO VIDEO EMBEDS */
 function vimeo_embed_shortcode( $atts ) {
